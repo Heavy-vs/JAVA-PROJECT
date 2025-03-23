@@ -1,6 +1,11 @@
-// import java.awt.Component;
+package java_project;
+
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -10,6 +15,8 @@ import javax.swing.JPanel;
 
 public class todo_list {
     public static void main(String[] args) {
+        DatabaseManager.setupDatabase(); // 🔥 Ensures database is set up before login
+        
     JFrame farme = new JFrame("TO-DO List ");
     farme.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     farme.setResizable(false);
@@ -34,6 +41,14 @@ public class todo_list {
     login.setPreferredSize(new Dimension(200,50));
     login.setAlignmentX(Component.CENTER_ALIGNMENT);
     panel.add(login);
+    login.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e){
+        farme.dispose();
+         new LoginPage(farme);   
+
+        }
+    });
     
    
 
@@ -56,3 +71,4 @@ public class todo_list {
     farme.add(panel);
     }
 }
+   
